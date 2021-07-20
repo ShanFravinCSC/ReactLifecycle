@@ -1,4 +1,4 @@
-import React from "react"; //importing React
+import React, { useEffect, useState } from "react"; //importing React
 
 //Function based component
 /*const User = (props) => {
@@ -12,7 +12,7 @@ import React from "react"; //importing React
 export default User;*/
 
 //class based component
-class User extends React.Component{
+/*class User extends React.Component{
     constructor(props){
         super(props);
 
@@ -28,7 +28,7 @@ class User extends React.Component{
             return {planet: "Jupiter"};
     }*/
 
-    shouldComponentUpdate(nextProp, nextState){
+   /* shouldComponentUpdate(nextProp, nextState){
         console.log("from should component update");
         console.log(
             {
@@ -56,20 +56,41 @@ class User extends React.Component{
             }
         );
         console.log("Hey Im from Componentdidmount");
-    }
+    }*/
 
-    render(){
-        console.log("Hey Im from render");
+
+
+    //render(){
+        //console.log("Hey Im from render");
         //view - browser
         //logic
+
+        const User = (props) => {
+            const[planet, setPlanet] = useState("earth");
+
+            //componentDidMount
+            useEffect(() =>{
+                //setPlanet("jupiter");
+                console.log("component mounting");
+
+                //componentWillUpdate
+                return console.log("bye bye");
+            }, []);
+
+            //componentDidUpdate
+            //shouldComponentUpdate
+            useEffect(() =>{
+                console.log("Planet Changes");
+            },[planet]);
+        
         return(
             <div>
-                <h1>{this.props.name}</h1>
-                <p>{this.props.description}</p>
-                <h4>{this.state.planet}</h4>
+                <h1>{props.name}</h1>
+                <p>{props.description}</p>
+                <button onClick={() => setPlanet("pluto")}>{planet}</button>
             </div>
         );
-    }
-}
+    //}
+};
 
 export default User;
